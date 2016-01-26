@@ -10,25 +10,25 @@ import Foundation
 
 /// Action for a router item
 
-typealias YMRouterAction = (params : Dictionary<String,String>) -> Void
+typealias YMRouterAction = (params: Dictionary<String,String>) -> Void
 
 /// YMAbstractRouter abstracts the function of a Router, enables external objects to work together
 
 public protocol YMAbstractRouter {
-  
+
   /// Handle incoming url
   ///
   /// :param: url the incoming url
   /// :returns: whether incoming url has been recognized and proceed
   ///
   func routeUrl(url: NSURL) -> Bool
-  
+
 }
 
 /// Extend YMAbstractRouter for some convenient methods
 
 extension YMAbstractRouter {
-  
+
   /// Handle incoming url string
   ///
   /// :param: urlString the incoming url string
@@ -44,27 +44,27 @@ extension YMAbstractRouter {
       return false
     }
   }
-  
+
 }
 
 /// YMRouter provides a basic YMAbstractRouter implementation with a default scheme
 
-public class YMRouter : YMAbstractRouter {
-  
+public class YMRouter: YMAbstractRouter {
+
   /// Main scheme of this router
-  public let scheme : String
-  
+  public let scheme: String
+
   /// Init a YMRouter
   /// :param: scheme the main scheme of this router
   ///
   public init(scheme: String) {
     self.scheme = scheme
   }
-  
+
   /// Register a sub-router for specified scheme
   public func registerRouter(router: YMAbstractRouter, forScheme scheme:String) {
   }
-  
+
   /// Handle incoming url
   ///
   /// :param: url the incoming url
@@ -79,7 +79,7 @@ public class YMRouter : YMAbstractRouter {
 /// Extend YMRouter with some convenient methods
 
 extension YMRouter {
-  
+
   /// Handle a path, with default scheme
   ///
   /// :param: path the path of incoming url
@@ -106,7 +106,7 @@ extension YMRouter {
     }
     return false
   }
-  
+
   /// Fix NSURL by padding host to first path components
   ///
   /// Pad scheme://path/to/action to scheme:///path/to/action to use host as first path component
@@ -126,5 +126,5 @@ extension YMRouter {
     }
     return url
   }
- 
+
 }

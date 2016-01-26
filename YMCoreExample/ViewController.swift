@@ -10,14 +10,15 @@ import UIKit
 import YMCore
 
 class ViewController: UIViewController {
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    Logger(self).fatal("What")
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-}
 
+}
