@@ -141,6 +141,7 @@ public class YMRouter: YMAbstractRouter {
 
   /// Register a sub-router for specified scheme
   public func registerRouter(router: YMAbstractRouter, forScheme scheme: String) {
+    self.subRouters[scheme] = router
   }
 
   /// Handle incoming url
@@ -152,7 +153,7 @@ public class YMRouter: YMAbstractRouter {
   public func routeUrl(url: NSURL) -> Bool {
     // try self first
     if url.scheme == self.scheme {
-      if _selfRouteUrl(url) {
+      if internalRouteUrl(fixedUrl(url)) {
         return true
       }
     }
@@ -188,7 +189,7 @@ public class YMRouter: YMAbstractRouter {
     return self
   }
 
-  private func _selfRouteUrl(url: NSURL) -> Bool {
+  private func internalRouteUrl(url: NSURL) -> Bool {
     let orignalPath = url.path ?? ""
     let path = self.alias[orignalPath] ?? orignalPath
     // get path components
