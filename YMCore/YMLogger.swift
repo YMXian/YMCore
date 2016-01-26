@@ -24,7 +24,7 @@ public enum YMLogLevel: Int {
   }
 }
 
-public func Logger(target: AnyObject? = nil) -> YMLogger {
+public func Log(target: AnyObject? = nil) -> YMLogger {
   if let target = target {
     return YMLogger.sharedInstance.of(String(target.dynamicType))
   } else {
