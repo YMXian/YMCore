@@ -24,6 +24,11 @@ public enum YMLogLevel: Int {
   }
 }
 
+/// Switch YMLogger.sharedInstance to target
+///
+/// :param: target target object for naming
+///
+/// :returns: YMLogger
 public func Log(target: AnyObject? = nil) -> YMLogger {
   if let target = target {
     return YMLogger.sharedInstance.of(String(target.dynamicType))
@@ -36,6 +41,7 @@ public class YMLogger {
 
   public static let sharedInstance = YMLogger()
 
+  /// Thread-local name
   public var name: String {
     get {
       return NSThread.currentThread().threadDictionary[kYMLoggerThreadLocalName] as? String ?? YMLoggerDefaultThreadLocalName
@@ -47,8 +53,10 @@ public class YMLogger {
 
   private var logLevelOverrides = [String: YMLogLevel]()
 
+  /// Default minimum logLevel
   public var defaultMinLogLevel = YMLogLevel.Warn
 
+  /// minimum logLevel for current name
   public var minLogLevel: YMLogLevel {
     get {
       return self.logLevelOverrides[self.name] ?? self.defaultMinLogLevel
@@ -58,11 +66,17 @@ public class YMLogger {
     }
   }
 
+  /// Clear overriden minimum log level, use default
   public func clearMinLogLevel() -> Self {
     self.logLevelOverrides.removeValueForKey(self.name)
     return self
   }
 
+  /// Switch YMLogger.sharedInstance to name
+  ///
+  /// :param: name
+  ///
+  /// :returns: self
   public func of(name: String) -> Self {
     self.name = name
     return self
