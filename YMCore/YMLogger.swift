@@ -191,3 +191,7 @@ public func CLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FI
 public func FLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
   Log(.Fatal, items: items, line : line, file : file)
 }
+
+//  MARK: - Default Extension
+
+extension NSObject : YMLoggable {}

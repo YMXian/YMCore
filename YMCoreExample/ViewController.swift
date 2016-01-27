@@ -14,7 +14,7 @@ public func test() {
   WLog("AA")
 }
 
-class ViewController: UIViewController, YMLoggable {
+class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
