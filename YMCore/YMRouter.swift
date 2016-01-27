@@ -118,7 +118,7 @@ private struct YMRouteEntry {
 
 /// YMRouter provides a basic YMAbstractRouter implementation with a default scheme
 
-public class YMRouter: YMAbstractRouter {
+public class YMRouter: YMAbstractRouter, YMLoggable {
 
   /// Main scheme of this router
   public let scheme: String
@@ -161,7 +161,7 @@ public class YMRouter: YMAbstractRouter {
     if let subRouter = self.subRouters[url.scheme] {
       return subRouter.routeUrl(url)
     }
-    Log(self).warn("Cannot route url \(url)")
+    WLog("Cannot route url \(url)")
     return false
   }
 

@@ -8,9 +8,7 @@
 
 import Foundation
 
-public let kYMLoggerThreadLocalName = "com.juxian.logger.thread-local-name"
-
-public let YMLoggerDefaultThreadLocalName = "default"
+//  MARK: - YMLogLevel Enum
 
 /**
  Log Level
@@ -23,6 +21,7 @@ public let YMLoggerDefaultThreadLocalName = "default"
  - Fatal: FATAL
  */
 public enum YMLogLevel: Int {
+
   case Debug = 0
   case Info  = 1
   case Warn  = 2
@@ -30,98 +29,165 @@ public enum YMLogLevel: Int {
   case Crit  = 4
   case Fatal = 5
 
-  func shortName() -> String {
+  public func shortName() -> String {
     return ["D", "I", "W", "E", "C", "F"][self.rawValue]
   }
-}
 
-/// Switch YMLogger.sharedInstance to target
-///
-/// :param: target target object for naming
-///
-/// :returns: YMLogger
-public func Log(target: AnyObject? = nil) -> YMLogger {
-  if let target = target {
-    return YMLogger.sharedInstance.of(String(target.dynamicType))
-  } else {
-    return YMLogger.sharedInstance.of(YMLoggerDefaultThreadLocalName)
+  public func name() -> String {
+    return ["DEBUG", "INFO", "WARN", "ERROR", "CRIT", "FATAL"][self.rawValue]
   }
 }
 
-public class YMLogger {
+//  MARK: - YMLogger Globals
 
-  public static let sharedInstance = YMLogger()
+/// Default minLevel for logger
+public var YMLoggerDefaultMinLevel = YMLogLevel.Warn
 
-  /// Thread-local name
-  public var name: String {
-    get {
-      return NSThread.currentThread().threadDictionary[kYMLoggerThreadLocalName] as? String ?? YMLoggerDefaultThreadLocalName
+/// Default name for logger
+public var YMLoggerDefaultName     = "default"
+
+/// Overriden for default min log level
+private var YMLoggerMinLogLevelOverriden = [String : YMLogLevel]()
+
+//  MARK: - YMAbstractLogger
+
+/**
+ *  YMAbstractLogger abstracts the most basic method for logging
+ */
+public protocol YMAbstractLogger {
+
+  /**
+   Basic log method
+
+   - parameter level: level
+   - parameter items: items for logging, will concat
+   - parameter line:  line of code
+   - parameter file:  file of code
+
+   */
+  func Log(level: YMLogLevel, items: [Any], line: UInt, file: StaticString)
+
+}
+
+/**
+ *  Add convenient methods to YMAbstractLogger
+ */
+extension YMAbstractLogger {
+
+  public func DLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+    Log(.Debug, items: items, line : line, file : file)
+  }
+
+  public func ILog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+    Log(.Debug, items: items, line : line, file : file)
+  }
+
+  public func WLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+    Log(.Debug, items: items, line : line, file : file)
+  }
+
+  public func ELog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+    Log(.Debug, items: items, line : line, file : file)
+  }
+
+  public func CLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+    Log(.Crit, items: items, line : line, file : file)
+  }
+
+  public func FLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+    Log(.Fatal, items: items, line : line, file : file)
+  }
+
+}
+
+//  MARK: - YMLoggable
+
+/**
+ *  Loggable Protocol, just include this into your class / struct / enum
+ */
+public protocol YMLoggable: YMAbstractLogger {
+
+  /// loggable name for identification and display
+  func loggableName() -> String
+
+}
+
+/**
+ *  Implement YMAbstractLogger for YMLoggable
+ */
+public extension YMLoggable {
+
+  public func Log(level: YMLogLevel, items: [Any], line: UInt = __LINE__, file: StaticString = __FILE__) {
+    if level.rawValue >= minLogLevel().rawValue {
+      print("\(level.shortName()), (\((file.stringValue as NSString).lastPathComponent):\(line)) \(loggableName()):", items.map({ v in String(v) }).joinWithSeparator(" "))
     }
-    set(newValue) {
-      NSThread.currentThread().threadDictionary[kYMLoggerThreadLocalName] = newValue
+  }
+
+  /**
+   Loggable name
+
+   - returns: type name by default
+   */
+  public func loggableName() -> String {
+    return String(self.dynamicType)
+  }
+
+  /**
+   Get the min log level for current name
+
+   - returns: level, default level is returned if not set
+   */
+  public func minLogLevel() -> YMLogLevel {
+    return YMLoggerMinLogLevelOverriden[loggableName()] ?? YMLoggerDefaultMinLevel
+  }
+
+  /**
+   Set the min log level for current name
+
+   - parameter level: min log level, nil to use default
+   */
+  public func setMinLogLevel(level: YMLogLevel?) {
+    if let level = level {
+      YMLoggerMinLogLevelOverriden[loggableName()] = level
+    } else {
+      YMLoggerMinLogLevelOverriden.removeValueForKey(loggableName())
     }
   }
+}
 
-  private var logLevelOverrides = [String: YMLogLevel]()
+//  MARK: - Logger for Wild Use
 
-  /// Default minimum logLevel
-  public var defaultMinLogLevel = YMLogLevel.Warn
+private class YMWildLogger: YMLoggable {
 
-  /// minimum logLevel for current name
-  public var minLogLevel: YMLogLevel {
-    get {
-      return self.logLevelOverrides[self.name] ?? self.defaultMinLogLevel
-    }
-    set(newValue) {
-      self.logLevelOverrides[self.name] = newValue
-    }
-  }
+  static let shared = YMWildLogger()
 
-  /// Clear overriden minimum log level, use default
-  public func clearMinLogLevel() -> Self {
-    self.logLevelOverrides.removeValueForKey(self.name)
-    return self
-  }
+  func loggableName() -> String { return YMLoggerDefaultName }
+}
 
-  /// Switch YMLogger.sharedInstance to name
-  ///
-  /// :param: name
-  ///
-  /// :returns: self
-  public func of(name: String) -> Self {
-    self.name = name
-    return self
-  }
+public func Log(level: YMLogLevel, items: [Any], line: UInt = __LINE__, file: StaticString = __FILE__) {
+  YMWildLogger.shared.Log(level, items: items, line: line, file: file)
+}
 
-  public func log(level: YMLogLevel, items: [Any], line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
-    if level.rawValue >= self.minLogLevel.rawValue {
-      print("\(level.shortName()), (\((file.stringValue as NSString).lastPathComponent):\(line)) \(self.name):", items.map({ v in String(v) }).joinWithSeparator(" "))
-    }
-    return self
-  }
+public func DLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+  Log(.Debug, items: items, line : line, file : file)
+}
 
-  public func debug(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
-    return log(.Debug, items: items, line : line, file : file)
-  }
+public func ILog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+  Log(.Debug, items: items, line : line, file : file)
+}
 
-  public func info(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
-    return log(.Debug, items: items, line : line, file : file)
-  }
+public func WLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+  Log(.Debug, items: items, line : line, file : file)
+}
 
-  public func warn(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
-    return log(.Debug, items: items, line : line, file : file)
-  }
+public func ELog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+  Log(.Debug, items: items, line : line, file : file)
+}
 
-  public func error(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
-    return log(.Debug, items: items, line : line, file : file)
-  }
+public func CLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+  Log(.Crit, items: items, line : line, file : file)
+}
 
-  public func crit(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
-    return log(.Crit, items: items, line : line, file : file)
-  }
-
-  public func fatal(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
-    return log(.Fatal, items: items, line : line, file : file)
-  }
-
+public func FLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
+  Log(.Fatal, items: items, line : line, file : file)
 }

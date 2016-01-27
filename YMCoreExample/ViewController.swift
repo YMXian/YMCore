@@ -9,12 +9,19 @@
 import UIKit
 import YMCore
 
-class ViewController: UIViewController {
+public func test() {
+  YMLoggerDefaultMinLevel = .Debug
+  WLog("AA")
+}
+
+class ViewController: UIViewController, YMLoggable {
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    Log(self).fatal("What")
+
+    test()
+    DLog("What")
   }
 
   override func didReceiveMemoryWarning() {
