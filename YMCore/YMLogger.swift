@@ -12,15 +12,26 @@ public let kYMLoggerThreadLocalName = "com.juxian.logger.thread-local-name"
 
 public let YMLoggerDefaultThreadLocalName = "default"
 
+/**
+ Log Level
+
+ - Debug: DEBUG
+ - Info:  INFO
+ - Warn:  WARN
+ - Error: ERROR
+ - Crit:  CRIT
+ - Fatal: FATAL
+ */
 public enum YMLogLevel: Int {
   case Debug = 0
   case Info  = 1
   case Warn  = 2
   case Error = 3
+  case Crit  = 4
   case Fatal = 5
 
   func shortName() -> String {
-    return ["D", "I", "W", "E", "-", "F"][self.rawValue]
+    return ["D", "I", "W", "E", "C", "F"][self.rawValue]
   }
 }
 
@@ -103,6 +114,10 @@ public class YMLogger {
 
   public func error(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
     return log(.Debug, items: items, line : line, file : file)
+  }
+
+  public func crit(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
+    return log(.Crit, items: items, line : line, file : file)
   }
 
   public func fatal(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) -> Self {
