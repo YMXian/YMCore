@@ -12,8 +12,12 @@
 		690739C91C5732D200FC8230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690739C71C5732D200FC8230 /* Main.storyboard */; };
 		690739CB1C5732D200FC8230 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 690739CA1C5732D200FC8230 /* Assets.xcassets */; };
 		690739CE1C5732D200FC8230 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690739CC1C5732D200FC8230 /* LaunchScreen.storyboard */; };
-		6916C0D11C5738F600861574 /* YMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6916C0CE1C5738EA00861574 /* YMCore.framework */; };
-		6916C0D21C5738F600861574 /* YMCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6916C0CE1C5738EA00861574 /* YMCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69D457481C5BF5B90040C0AA /* YMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6916C0CE1C5738EA00861574 /* YMCore.framework */; };
+		69D457491C5BF5B90040C0AA /* YMCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6916C0CE1C5738EA00861574 /* YMCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69D4574C1C5BF5B90040C0AA /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457401C5BF5780040C0AA /* ReactiveCocoa.framework */; };
+		69D4574D1C5BF5B90040C0AA /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457401C5BF5780040C0AA /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69D4574E1C5BF5B90040C0AA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457411C5BF5780040C0AA /* Result.framework */; };
+		69D4574F1C5BF5B90040C0AA /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457411C5BF5780040C0AA /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +35,7 @@
 			remoteGlobalIDString = 697F2F3A1C5731FA00242C29;
 			remoteInfo = YMCoreTests;
 		};
-		6916C0D31C5738F600861574 /* PBXContainerItemProxy */ = {
+		69D4574A1C5BF5B90040C0AA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6916C0C81C5738EA00861574 /* YMCore.xcodeproj */;
 			proxyType = 1;
@@ -41,13 +45,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6916C0D51C5738F600861574 /* Embed Frameworks */ = {
+		69D457501C5BF5B90040C0AA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6916C0D21C5738F600861574 /* YMCore.framework in Embed Frameworks */,
+				69D4574F1C5BF5B90040C0AA /* Result.framework in Embed Frameworks */,
+				69D457491C5BF5B90040C0AA /* YMCore.framework in Embed Frameworks */,
+				69D4574D1C5BF5B90040C0AA /* ReactiveCocoa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +69,8 @@
 		690739CD1C5732D200FC8230 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		690739CF1C5732D200FC8230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6916C0C81C5738EA00861574 /* YMCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = YMCore.xcodeproj; sourceTree = "<group>"; };
+		69D457401C5BF5780040C0AA /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = SOURCE_ROOT; };
+		69D457411C5BF5780040C0AA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6916C0D11C5738F600861574 /* YMCore.framework in Frameworks */,
+				69D4574E1C5BF5B90040C0AA /* Result.framework in Frameworks */,
+				69D457481C5BF5B90040C0AA /* YMCore.framework in Frameworks */,
+				69D4574C1C5BF5B90040C0AA /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +92,7 @@
 			children = (
 				6916C0C81C5738EA00861574 /* YMCore.xcodeproj */,
 				690739C21C5732D200FC8230 /* YMCoreExample */,
+				69D4573C1C5BF54F0040C0AA /* Frameworks */,
 				690739C11C5732D200FC8230 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,6 +127,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		69D4573C1C5BF54F0040C0AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69D457401C5BF5780040C0AA /* ReactiveCocoa.framework */,
+				69D457411C5BF5780040C0AA /* Result.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,12 +146,12 @@
 				690739BC1C5732D200FC8230 /* Sources */,
 				690739BD1C5732D200FC8230 /* Frameworks */,
 				690739BE1C5732D200FC8230 /* Resources */,
-				6916C0D51C5738F600861574 /* Embed Frameworks */,
+				69D457501C5BF5B90040C0AA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6916C0D41C5738F600861574 /* PBXTargetDependency */,
+				69D4574B1C5BF5B90040C0AA /* PBXTargetDependency */,
 			);
 			name = YMCoreExample;
 			productName = YMCoreExample;
@@ -221,10 +241,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6916C0D41C5738F600861574 /* PBXTargetDependency */ = {
+		69D4574B1C5BF5B90040C0AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = YMCore;
-			targetProxy = 6916C0D31C5738F600861574 /* PBXContainerItemProxy */;
+			targetProxy = 69D4574A1C5BF5B90040C0AA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -335,6 +355,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = YMCoreExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juxian.YMCoreExample;
@@ -348,6 +372,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = YMCoreExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juxian.YMCoreExample;
