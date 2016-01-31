@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		690739D71C57338200FC8230 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690739D61C57338200FC8230 /* Router.swift */; };
-		6916C0D71C5748C300861574 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6916C0D61C5748C300861574 /* Logger.swift */; };
+		691270B21C5E5F6700022C65 /* BlockDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270AE1C5E5F6700022C65 /* BlockDefinition.swift */; };
+		691270B31C5E5F6700022C65 /* BlockUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270AF1C5E5F6700022C65 /* BlockUtils.swift */; };
+		691270B41C5E5F6700022C65 /* CallbackStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270B01C5E5F6700022C65 /* CallbackStore.swift */; };
+		691270B51C5E5F6700022C65 /* DispatchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270B11C5E5F6700022C65 /* DispatchUtils.swift */; };
+		691270BA1C5E5F8E00022C65 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270B71C5E5F8E00022C65 /* Router.swift */; };
+		691270BB1C5E5F8E00022C65 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270B91C5E5F8E00022C65 /* Logger.swift */; };
 		697F2F341C5731FA00242C29 /* YMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 697F2F331C5731FA00242C29 /* YMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		697F2F3B1C5731FA00242C29 /* YMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697F2F301C5731FA00242C29 /* YMCore.framework */; };
 		697F2F401C5731FA00242C29 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697F2F3F1C5731FA00242C29 /* RouterTests.swift */; };
@@ -25,8 +29,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		690739D61C57338200FC8230 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		6916C0D61C5748C300861574 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		691270AE1C5E5F6700022C65 /* BlockDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockDefinition.swift; sourceTree = "<group>"; };
+		691270AF1C5E5F6700022C65 /* BlockUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockUtils.swift; sourceTree = "<group>"; };
+		691270B01C5E5F6700022C65 /* CallbackStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackStore.swift; sourceTree = "<group>"; };
+		691270B11C5E5F6700022C65 /* DispatchUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchUtils.swift; sourceTree = "<group>"; };
+		691270B71C5E5F8E00022C65 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		691270B91C5E5F8E00022C65 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		697F2F301C5731FA00242C29 /* YMCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YMCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		697F2F331C5731FA00242C29 /* YMCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMCore.h; sourceTree = "<group>"; };
 		697F2F351C5731FA00242C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +62,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		691270AD1C5E5F6700022C65 /* Async */ = {
+			isa = PBXGroup;
+			children = (
+				691270AE1C5E5F6700022C65 /* BlockDefinition.swift */,
+				691270AF1C5E5F6700022C65 /* BlockUtils.swift */,
+				691270B01C5E5F6700022C65 /* CallbackStore.swift */,
+				691270B11C5E5F6700022C65 /* DispatchUtils.swift */,
+			);
+			path = Async;
+			sourceTree = "<group>";
+		};
+		691270B61C5E5F8E00022C65 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				691270B71C5E5F8E00022C65 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		691270B81C5E5F8E00022C65 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				691270B91C5E5F8E00022C65 /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		697F2F261C5731FA00242C29 = {
 			isa = PBXGroup;
 			children = (
@@ -75,10 +110,11 @@
 		697F2F321C5731FA00242C29 /* YMCore */ = {
 			isa = PBXGroup;
 			children = (
+				691270B61C5E5F8E00022C65 /* Router */,
+				691270B81C5E5F8E00022C65 /* Logger */,
+				691270AD1C5E5F6700022C65 /* Async */,
 				697F2F331C5731FA00242C29 /* YMCore.h */,
 				697F2F351C5731FA00242C29 /* Info.plist */,
-				690739D61C57338200FC8230 /* Router.swift */,
-				6916C0D61C5748C300861574 /* Logger.swift */,
 			);
 			path = YMCore;
 			sourceTree = "<group>";
@@ -201,8 +237,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				690739D71C57338200FC8230 /* Router.swift in Sources */,
-				6916C0D71C5748C300861574 /* Logger.swift in Sources */,
+				691270B51C5E5F6700022C65 /* DispatchUtils.swift in Sources */,
+				691270BB1C5E5F8E00022C65 /* Logger.swift in Sources */,
+				691270B21C5E5F6700022C65 /* BlockDefinition.swift in Sources */,
+				691270BA1C5E5F8E00022C65 /* Router.swift in Sources */,
+				691270B31C5E5F6700022C65 /* BlockUtils.swift in Sources */,
+				691270B41C5E5F6700022C65 /* CallbackStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
