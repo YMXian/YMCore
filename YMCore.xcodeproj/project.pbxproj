@@ -12,8 +12,6 @@
 		697F2F341C5731FA00242C29 /* YMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 697F2F331C5731FA00242C29 /* YMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		697F2F3B1C5731FA00242C29 /* YMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697F2F301C5731FA00242C29 /* YMCore.framework */; };
 		697F2F401C5731FA00242C29 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697F2F3F1C5731FA00242C29 /* RouterTests.swift */; };
-		69D4573A1C5BF4E80040C0AA /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457381C5BF4E80040C0AA /* ReactiveCocoa.framework */; };
-		69D4573B1C5BF4E80040C0AA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457391C5BF4E80040C0AA /* Result.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +33,6 @@
 		697F2F3A1C5731FA00242C29 /* YMCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YMCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		697F2F3F1C5731FA00242C29 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		697F2F411C5731FA00242C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69D457381C5BF4E80040C0AA /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
-		69D457391C5BF4E80040C0AA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,8 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D4573A1C5BF4E80040C0AA /* ReactiveCocoa.framework in Frameworks */,
-				69D4573B1C5BF4E80040C0AA /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +59,6 @@
 			children = (
 				697F2F321C5731FA00242C29 /* YMCore */,
 				697F2F3E1C5731FA00242C29 /* YMCoreTests */,
-				69D457371C5BF4C50040C0AA /* Frameworks */,
 				697F2F311C5731FA00242C29 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,15 +90,6 @@
 				697F2F411C5731FA00242C29 /* Info.plist */,
 			);
 			path = YMCoreTests;
-			sourceTree = "<group>";
-		};
-		69D457371C5BF4C50040C0AA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				69D457381C5BF4E80040C0AA /* ReactiveCocoa.framework */,
-				69D457391C5BF4E80040C0AA /* Result.framework */,
-			);
-			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
