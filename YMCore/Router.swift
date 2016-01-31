@@ -1,6 +1,6 @@
 //
-//  YMRouter.swift
-//  YMCore
+//  Router.swift
+//  Core
 //
 //  Created by Yanke Guo on 16/1/26.
 //  Copyright © 2016年 Juxian(Beijing) Technology Co., Ltd. All rights reserved.
@@ -10,11 +10,11 @@ import Foundation
 
 /// Action for a router item
 
-public typealias YMRouterAction = (params: Dictionary<String,String>) -> Void
+public typealias RouterAction = (params: Dictionary<String,String>) -> Void
 
-/// YMAbstractRouter abstracts the function of a Router, enables external objects to work together
+/// AbstractRouter abstracts the function of a Router, enables external objects to work together
 
-public protocol YMAbstractRouter {
+public protocol AbstractRouter {
 
   /// Handle incoming url
   ///
@@ -25,9 +25,9 @@ public protocol YMAbstractRouter {
 
 }
 
-/// Extend YMAbstractRouter for some convenient methods
+/// Extend AbstractRouter for some convenient methods
 
-extension YMAbstractRouter {
+extension AbstractRouter {
 
   /// Handle incoming url string
   ///
@@ -47,9 +47,9 @@ extension YMAbstractRouter {
 
 }
 
-/// YMRouteEntryComponent stands for a path component of routing path
+/// RouteEntryComponent stands for a path component of routing path
 
-private struct YMRouteEntryComponent {
+private struct RouteEntryComponent {
 
   /// Whether this component is a wildcard
   let isWildcard: Bool
@@ -59,24 +59,24 @@ private struct YMRouteEntryComponent {
 
 }
 
-/// YMRouteEntry stands for a entry
+/// RouteEntry stands for a entry
 
-private struct YMRouteEntry {
+private struct RouteEntry {
 
   /// path components
-  let components: [YMRouteEntryComponent]
+  let components: [RouteEntryComponent]
 
   /// action
-  let action: YMRouterAction
+  let action: RouterAction
 
-  init(pattern: String, action: YMRouterAction) {
-    var components = [YMRouteEntryComponent]()
+  init(pattern: String, action: RouterAction) {
+    var components = [RouteEntryComponent]()
     for component in (pattern as NSString).pathComponents {
       if !component.isEmpty {
         if component.hasPrefix(":") {
-          components.append(YMRouteEntryComponent(isWildcard: true, value: component.substringFromIndex(component.startIndex.advancedBy(1))))
+          components.append(RouteEntryComponent(isWildcard: true, value: component.substringFromIndex(component.startIndex.advancedBy(1))))
         } else {
-          components.append(YMRouteEntryComponent(isWildcard: false, value: component as String))
+          components.append(RouteEntryComponent(isWildcard: false, value: component as String))
         }
       }
     }
@@ -116,9 +116,9 @@ private struct YMRouteEntry {
 
 }
 
-/// YMRouter provides a basic YMAbstractRouter implementation with a default scheme
+/// Router provides a basic AbstractRouter implementation with a default scheme
 
-public class YMRouter: YMAbstractRouter, YMLoggable {
+public class Router: AbstractRouter, Loggable {
 
   /// Main scheme of this router
   public let scheme: String
@@ -127,12 +127,12 @@ public class YMRouter: YMAbstractRouter, YMLoggable {
   private var alias = [String:String]()
 
   /// Sub-routers
-  private var subRouters = [String: YMAbstractRouter]()
+  private var subRouters = [String: AbstractRouter]()
 
   /// Routes
-  private var routes = [YMRouteEntry]()
+  private var routes = [RouteEntry]()
 
-  /// Init a YMRouter
+  /// Init a Router
   /// :param: scheme the main scheme of this router
   ///
   public init(scheme: String) {
@@ -140,7 +140,7 @@ public class YMRouter: YMAbstractRouter, YMLoggable {
   }
 
   /// Register a sub-router for specified scheme
-  public func registerRouter(router: YMAbstractRouter, forScheme scheme: String) {
+  public func registerRouter(router: AbstractRouter, forScheme scheme: String) {
     self.subRouters[scheme] = router
   }
 
@@ -172,8 +172,8 @@ public class YMRouter: YMAbstractRouter, YMLoggable {
   ///
   /// :returns: self
 
-  public func on(path: String, action: YMRouterAction) -> Self {
-    self.routes.append(YMRouteEntry(pattern: path, action: action))
+  public func on(path: String, action: RouterAction) -> Self {
+    self.routes.append(RouteEntry(pattern: path, action: action))
     return self
   }
 
@@ -239,9 +239,9 @@ public class YMRouter: YMAbstractRouter, YMLoggable {
 
 }
 
-/// Extend YMRouter with some convenient methods
+/// Extend Router with some convenient methods
 
-extension YMRouter {
+extension Router {
 
   /// Handle a path, with default scheme
   ///

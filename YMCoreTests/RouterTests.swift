@@ -1,6 +1,6 @@
 //
-//  YMCoreTests.swift
-//  YMCoreTests
+//  CoreTests.swift
+//  CoreTests
 //
 //  Created by Yanke Guo on 16/1/26.
 //  Copyright © 2016年 JuXian (Beijing) Technology Co., Ltd. All rights reserved.
@@ -9,10 +9,10 @@
 import XCTest
 @testable import YMCore
 
-class YMRouterTests: XCTestCase {
+class RouterTests: XCTestCase {
 
   func testBasicRouter() {
-    let router = YMRouter(scheme: "test")
+    let router = Router(scheme: "test")
 
     var hit = 0
 
@@ -32,7 +32,7 @@ class YMRouterTests: XCTestCase {
   }
 
   func testInlineRouter() {
-    let router = YMRouter(scheme: "test")
+    let router = Router(scheme: "test")
 
     var hit = 0
 
@@ -52,7 +52,7 @@ class YMRouterTests: XCTestCase {
   }
 
   func testHybridRouter() {
-    let router = YMRouter(scheme: "test")
+    let router = Router(scheme: "test")
 
     var hit = 0
 
@@ -73,7 +73,7 @@ class YMRouterTests: XCTestCase {
   }
 
   func testHybridAliasRouter() {
-    let router = YMRouter(scheme: "test")
+    let router = Router(scheme: "test")
 
     var hit = 0
 
@@ -96,7 +96,7 @@ class YMRouterTests: XCTestCase {
   }
 
   func testSubRouter() {
-    let router = YMRouter(scheme: "test")
+    let router = Router(scheme: "test")
 
     var hit = 0
 
@@ -105,7 +105,7 @@ class YMRouterTests: XCTestCase {
       hit = hit+1
     }
 
-    let router2 = YMRouter(scheme: "test1")
+    let router2 = Router(scheme: "test1")
 
     var hit2 = 0
 
@@ -121,7 +121,7 @@ class YMRouterTests: XCTestCase {
   }
 
   func testSubRouter2() {
-    let router = YMRouter(scheme: "test")
+    let router = Router(scheme: "test")
 
     var hit = 0
 
@@ -130,7 +130,7 @@ class YMRouterTests: XCTestCase {
       hit = hit+1
     }
 
-    let router2 = YMRouter(scheme: "test")
+    let router2 = Router(scheme: "test")
 
     var hit2 = 0
 

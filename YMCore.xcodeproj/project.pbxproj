@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		690739D71C57338200FC8230 /* YMRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690739D61C57338200FC8230 /* YMRouter.swift */; };
-		6916C0D71C5748C300861574 /* YMLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6916C0D61C5748C300861574 /* YMLogger.swift */; };
+		690739D71C57338200FC8230 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690739D61C57338200FC8230 /* Router.swift */; };
+		6916C0D71C5748C300861574 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6916C0D61C5748C300861574 /* Logger.swift */; };
 		697F2F341C5731FA00242C29 /* YMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 697F2F331C5731FA00242C29 /* YMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		697F2F3B1C5731FA00242C29 /* YMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697F2F301C5731FA00242C29 /* YMCore.framework */; };
-		697F2F401C5731FA00242C29 /* YMRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697F2F3F1C5731FA00242C29 /* YMRouterTests.swift */; };
+		697F2F401C5731FA00242C29 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697F2F3F1C5731FA00242C29 /* RouterTests.swift */; };
 		69D4573A1C5BF4E80040C0AA /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457381C5BF4E80040C0AA /* ReactiveCocoa.framework */; };
 		69D4573B1C5BF4E80040C0AA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D457391C5BF4E80040C0AA /* Result.framework */; };
 /* End PBXBuildFile section */
@@ -27,13 +27,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		690739D61C57338200FC8230 /* YMRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YMRouter.swift; sourceTree = "<group>"; };
-		6916C0D61C5748C300861574 /* YMLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YMLogger.swift; sourceTree = "<group>"; };
+		690739D61C57338200FC8230 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		6916C0D61C5748C300861574 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		697F2F301C5731FA00242C29 /* YMCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YMCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		697F2F331C5731FA00242C29 /* YMCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMCore.h; sourceTree = "<group>"; };
 		697F2F351C5731FA00242C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		697F2F3A1C5731FA00242C29 /* YMCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YMCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		697F2F3F1C5731FA00242C29 /* YMRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YMRouterTests.swift; sourceTree = "<group>"; };
+		697F2F3F1C5731FA00242C29 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		697F2F411C5731FA00242C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69D457381C5BF4E80040C0AA /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		69D457391C5BF4E80040C0AA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -84,8 +84,8 @@
 			children = (
 				697F2F331C5731FA00242C29 /* YMCore.h */,
 				697F2F351C5731FA00242C29 /* Info.plist */,
-				690739D61C57338200FC8230 /* YMRouter.swift */,
-				6916C0D61C5748C300861574 /* YMLogger.swift */,
+				690739D61C57338200FC8230 /* Router.swift */,
+				6916C0D61C5748C300861574 /* Logger.swift */,
 			);
 			path = YMCore;
 			sourceTree = "<group>";
@@ -93,7 +93,7 @@
 		697F2F3E1C5731FA00242C29 /* YMCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				697F2F3F1C5731FA00242C29 /* YMRouterTests.swift */,
+				697F2F3F1C5731FA00242C29 /* RouterTests.swift */,
 				697F2F411C5731FA00242C29 /* Info.plist */,
 			);
 			path = YMCoreTests;
@@ -217,8 +217,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				690739D71C57338200FC8230 /* YMRouter.swift in Sources */,
-				6916C0D71C5748C300861574 /* YMLogger.swift in Sources */,
+				690739D71C57338200FC8230 /* Router.swift in Sources */,
+				6916C0D71C5748C300861574 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				697F2F401C5731FA00242C29 /* YMRouterTests.swift in Sources */,
+				697F2F401C5731FA00242C29 /* RouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

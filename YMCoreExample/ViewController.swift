@@ -10,7 +10,7 @@ import UIKit
 import YMCore
 
 public func test() {
-  YMLoggerDefaultMinLevel = .Debug
+  YMCore.LoggerDefaultMinLevel = .Debug
   WLog("AA")
 }
 

@@ -1,6 +1,6 @@
 //
-//  YMLogger.swift
-//  YMCore
+//  Logger.swift
+//  Core
 //
 //  Created by Yanke Guo on 16/1/26.
 //  Copyright © 2016年 Juxian(Beijing) Technology Co., Ltd. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-//  MARK: - YMLogLevel Enum
+//  MARK: - LogLevel Enum
 
 /**
  Log Level
@@ -20,7 +20,7 @@ import Foundation
  - Crit:  CRIT
  - Fatal: FATAL
  */
-public enum YMLogLevel: Int {
+public enum LogLevel: Int {
 
   case Debug = 0
   case Info  = 1
@@ -38,23 +38,23 @@ public enum YMLogLevel: Int {
   }
 }
 
-//  MARK: - YMLogger Globals
+//  MARK: - Logger Globals
 
 /// Default minLevel for logger
-public var YMLoggerDefaultMinLevel = YMLogLevel.Warn
+public var LoggerDefaultMinLevel = LogLevel.Warn
 
 /// Default name for logger
-public var YMLoggerDefaultName     = "default"
+public var LoggerDefaultName     = "default"
 
 /// Overriden for default min log level
-private var YMLoggerMinLogLevelOverriden = [String : YMLogLevel]()
+private var LoggerMinLogLevelOverriden = [String : LogLevel]()
 
-//  MARK: - YMAbstractLogger
+//  MARK: - AbstractLogger
 
 /**
- *  YMAbstractLogger abstracts the most basic method for logging
+ *  AbstractLogger abstracts the most basic method for logging
  */
-public protocol YMAbstractLogger {
+public protocol AbstractLogger {
 
   /**
    Basic log method
@@ -65,14 +65,14 @@ public protocol YMAbstractLogger {
    - parameter file:  file of code
 
    */
-  func Log(level: YMLogLevel, items: [Any], line: UInt, file: StaticString)
+  func Log(level: LogLevel, items: [Any], line: UInt, file: StaticString)
 
 }
 
 /**
- *  Add convenient methods to YMAbstractLogger
+ *  Add convenient methods to AbstractLogger
  */
-extension YMAbstractLogger {
+extension AbstractLogger {
 
   public func DLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
     Log(.Debug, items: items, line : line, file : file)
@@ -100,12 +100,12 @@ extension YMAbstractLogger {
 
 }
 
-//  MARK: - YMLoggable
+//  MARK: - Loggable
 
 /**
  *  Loggable Protocol, just include this into your class / struct / enum
  */
-public protocol YMLoggable: YMAbstractLogger {
+public protocol Loggable: AbstractLogger {
 
   /// loggable name for identification and display
   func loggableName() -> String
@@ -113,11 +113,11 @@ public protocol YMLoggable: YMAbstractLogger {
 }
 
 /**
- *  Implement YMAbstractLogger for YMLoggable
+ *  Implement AbstractLogger for Loggable
  */
-public extension YMLoggable {
+public extension Loggable {
 
-  public func Log(level: YMLogLevel, items: [Any], line: UInt = __LINE__, file: StaticString = __FILE__) {
+  public func Log(level: LogLevel, items: [Any], line: UInt = __LINE__, file: StaticString = __FILE__) {
     if level.rawValue >= minLogLevel().rawValue {
       print("\(level.shortName()), (\((file.stringValue as NSString).lastPathComponent):\(line)) \(loggableName()):", items.map({ v in String(v) }).joinWithSeparator(" "))
     }
@@ -137,8 +137,8 @@ public extension YMLoggable {
 
    - returns: level, default level is returned if not set
    */
-  public func minLogLevel() -> YMLogLevel {
-    return YMLoggerMinLogLevelOverriden[loggableName()] ?? YMLoggerDefaultMinLevel
+  public func minLogLevel() -> LogLevel {
+    return LoggerMinLogLevelOverriden[loggableName()] ?? LoggerDefaultMinLevel
   }
 
   /**
@@ -146,26 +146,26 @@ public extension YMLoggable {
 
    - parameter level: min log level, nil to use default
    */
-  public func setMinLogLevel(level: YMLogLevel?) {
+  public func setMinLogLevel(level: LogLevel?) {
     if let level = level {
-      YMLoggerMinLogLevelOverriden[loggableName()] = level
+      LoggerMinLogLevelOverriden[loggableName()] = level
     } else {
-      YMLoggerMinLogLevelOverriden.removeValueForKey(loggableName())
+      LoggerMinLogLevelOverriden.removeValueForKey(loggableName())
     }
   }
 }
 
 //  MARK: - Logger for Wild Use
 
-private class YMWildLogger: YMLoggable {
+private class WildLogger: Loggable {
 
-  static let shared = YMWildLogger()
+  static let shared = WildLogger()
 
-  func loggableName() -> String { return YMLoggerDefaultName }
+  func loggableName() -> String { return LoggerDefaultName }
 }
 
-public func Log(level: YMLogLevel, items: [Any], line: UInt = __LINE__, file: StaticString = __FILE__) {
-  YMWildLogger.shared.Log(level, items: items, line: line, file: file)
+public func Log(level: LogLevel, items: [Any], line: UInt = __LINE__, file: StaticString = __FILE__) {
+  WildLogger.shared.Log(level, items: items, line: line, file: file)
 }
 
 public func DLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FILE__) {
@@ -194,4 +194,4 @@ public func FLog(items: Any..., line: UInt = __LINE__, file: StaticString = __FI
 
 //  MARK: - Default Extension
 
-extension NSObject : YMLoggable {}
+extension NSObject : Loggable {}
