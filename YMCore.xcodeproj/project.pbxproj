@@ -13,6 +13,9 @@
 		691270B51C5E5F6700022C65 /* DispatchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270B11C5E5F6700022C65 /* DispatchUtils.swift */; };
 		691270BA1C5E5F8E00022C65 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270B71C5E5F8E00022C65 /* Router.swift */; };
 		691270BB1C5E5F8E00022C65 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270B91C5E5F8E00022C65 /* Logger.swift */; };
+		691270BE1C5E70A800022C65 /* BlockQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270BD1C5E70A800022C65 /* BlockQueue.swift */; };
+		691270C01C5E7F2400022C65 /* BlockQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270BF1C5E7F2400022C65 /* BlockQueueTests.swift */; };
+		691270C21C5E7FBB00022C65 /* BlockUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691270C11C5E7FBB00022C65 /* BlockUtilsTests.swift */; };
 		697F2F341C5731FA00242C29 /* YMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 697F2F331C5731FA00242C29 /* YMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		697F2F3B1C5731FA00242C29 /* YMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697F2F301C5731FA00242C29 /* YMCore.framework */; };
 		697F2F401C5731FA00242C29 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697F2F3F1C5731FA00242C29 /* RouterTests.swift */; };
@@ -35,6 +38,9 @@
 		691270B11C5E5F6700022C65 /* DispatchUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchUtils.swift; sourceTree = "<group>"; };
 		691270B71C5E5F8E00022C65 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		691270B91C5E5F8E00022C65 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		691270BD1C5E70A800022C65 /* BlockQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockQueue.swift; sourceTree = "<group>"; };
+		691270BF1C5E7F2400022C65 /* BlockQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockQueueTests.swift; sourceTree = "<group>"; };
+		691270C11C5E7FBB00022C65 /* BlockUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockUtilsTests.swift; sourceTree = "<group>"; };
 		697F2F301C5731FA00242C29 /* YMCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YMCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		697F2F331C5731FA00242C29 /* YMCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMCore.h; sourceTree = "<group>"; };
 		697F2F351C5731FA00242C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 				691270AF1C5E5F6700022C65 /* BlockUtils.swift */,
 				691270B01C5E5F6700022C65 /* ExpirableStore.swift */,
 				691270B11C5E5F6700022C65 /* DispatchUtils.swift */,
+				691270BD1C5E70A800022C65 /* BlockQueue.swift */,
 			);
 			path = Async;
 			sourceTree = "<group>";
@@ -124,6 +131,8 @@
 			children = (
 				697F2F3F1C5731FA00242C29 /* RouterTests.swift */,
 				697F2F411C5731FA00242C29 /* Info.plist */,
+				691270BF1C5E7F2400022C65 /* BlockQueueTests.swift */,
+				691270C11C5E7FBB00022C65 /* BlockUtilsTests.swift */,
 			);
 			path = YMCoreTests;
 			sourceTree = "<group>";
@@ -237,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				691270BE1C5E70A800022C65 /* BlockQueue.swift in Sources */,
 				691270B51C5E5F6700022C65 /* DispatchUtils.swift in Sources */,
 				691270BB1C5E5F8E00022C65 /* Logger.swift in Sources */,
 				691270B21C5E5F6700022C65 /* BlockDefinition.swift in Sources */,
@@ -251,6 +261,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				697F2F401C5731FA00242C29 /* RouterTests.swift in Sources */,
+				691270C01C5E7F2400022C65 /* BlockQueueTests.swift in Sources */,
+				691270C21C5E7FBB00022C65 /* BlockUtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

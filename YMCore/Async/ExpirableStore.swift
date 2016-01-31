@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ExpirableStore<T> {
+public class ExpirableStore<T> : Loggable {
 
   public typealias ElementHandler = (T) -> Void
 
