@@ -8,16 +8,16 @@
 
 import Foundation
 
-public func dispatch_async_global(identifier: Int, block: VoidBlock) {
+public func dispatch_async_global(identifier: Int, _ block: VoidBlock) {
   dispatch_async(dispatch_get_global_queue(identifier, 0), block)
 }
 
 public func dispatch_async_low(block: VoidBlock) {
-  dispatch_async_global(DISPATCH_QUEUE_PRIORITY_LOW, block: block)
+  dispatch_async_global(DISPATCH_QUEUE_PRIORITY_LOW, block)
 }
 
 public func dispatch_async_high(block: VoidBlock) {
-  dispatch_async_global(DISPATCH_QUEUE_PRIORITY_HIGH, block: block)
+  dispatch_async_global(DISPATCH_QUEUE_PRIORITY_HIGH, block)
 }
 
 public func dispatch_async_main(block: VoidBlock) {
@@ -44,10 +44,10 @@ public func dispatch_sync_main_alt(block: VoidBlock) {
   }
 }
 
-public func dispatch_after_seconds(queue: dispatch_queue_t, seconds: NSTimeInterval, block: VoidBlock) {
+public func dispatch_after_seconds(queue: dispatch_queue_t, _ seconds: NSTimeInterval, _ block: VoidBlock) {
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * NSTimeInterval(NSEC_PER_SEC))), queue, block)
 }
 
-public func dispatch_main_after(seconds: NSTimeInterval, block: VoidBlock) {
-  dispatch_after_seconds(dispatch_get_main_queue(), seconds: seconds, block: block)
+public func dispatch_main_after(seconds: NSTimeInterval, _ block: VoidBlock) {
+  dispatch_after_seconds(dispatch_get_main_queue(), seconds, block)
 }
